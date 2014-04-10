@@ -13,8 +13,8 @@
 //Include for STL vector container
 #include <vector>
 
-//Include Timer
-#include "Timer.hpp"
+//Include for time measurements
+#include <chrono>
 
 //Identify whether the program is compiled in debug-mode or not
 #ifdef _DEBUG
@@ -22,6 +22,9 @@
 #else
 #define SIZE 6000
 #endif
+
+typedef std::chrono::time_point<std::chrono::high_resolution_clock> Chrono;
+typedef std::chrono::duration<double> ChronoDuration;
 
 //Iterate in two loops over all elements in the array
 //The memory is not processed in a sequential order
@@ -92,32 +95,38 @@ void doExperiments(int size)
     //Allocate memory for the experiments
     double* field = new double[size*size];
 
-    util::StopWatch timer;
+    Chrono before;
+    ChronoDuration duration;
 
     std::cout<<"Experiment1 ";
-    timer.tic();
+    before = std::chrono::high_resolution_clock::now();
     experiment1(field,size,size);
-    timer.toc(std::cout);
+    duration = std::chrono::duration_cast<ChronoDuration>(std::chrono::high_resolution_clock::now()-before);
+    std::cout<<"Experiment 1 took "<<duration.count()<<" seconds"<<std::endl;
 
     std::cout<<"Experiment2 ";
-    timer.tic();
+    before = std::chrono::high_resolution_clock::now();
     experiment2(field,size,size);
-    timer.toc(std::cout);
+    duration = std::chrono::duration_cast<ChronoDuration>(std::chrono::high_resolution_clock::now()-before);
+    std::cout<<"Experiment 2 took "<<duration.count()<<" seconds"<<std::endl;
 
     std::cout<<"Experiment3 ";
-    timer.tic();
+    before = std::chrono::high_resolution_clock::now();
     experiment3(field,size,size);
-    timer.toc(std::cout);
+    duration = std::chrono::duration_cast<ChronoDuration>(std::chrono::high_resolution_clock::now()-before);
+    std::cout<<"Experiment 3 took "<<duration.count()<<" seconds"<<std::endl;
 
     std::cout<<"Experiment4 ";
-    timer.tic();
+    before = std::chrono::high_resolution_clock::now();
     experiment4(field,size,size);
-    timer.toc(std::cout);
+    duration = std::chrono::duration_cast<ChronoDuration>(std::chrono::high_resolution_clock::now()-before);
+    std::cout<<"Experiment 4 took "<<duration.count()<<" seconds"<<std::endl;
 
     std::cout<<"Experiment5 ";
-    timer.tic();
+    before = std::chrono::high_resolution_clock::now();
     experiment5(field,size,size);
-    timer.toc(std::cout);
+    duration = std::chrono::duration_cast<ChronoDuration>(std::chrono::high_resolution_clock::now()-before);
+    std::cout<<"Experiment 5 took "<<duration.count()<<" seconds"<<std::endl;
 
     //Don't forget to delete the experiment's array memory!
     delete[] field;
