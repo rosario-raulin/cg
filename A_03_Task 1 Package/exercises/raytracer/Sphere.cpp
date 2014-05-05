@@ -66,7 +66,7 @@ Sphere::closestIntersectionModel(const Ray &ray, double maxLambda, RayIntersecti
   if (roots > 0) {
     // There is a solution, we just need the (smallest) positve one.
     double lambda = t1 >= 0 ? t1 : t2;
-    if (lambda < maxLambda) {
+    if (lambda >= 0.0 && lambda < maxLambda) {
       doIntersect = true;
       intersection = RayIntersection(ray, shared_from_this(), lambda, ray.pointOnRay(lambda), Vec3d(0,0,0));
     }

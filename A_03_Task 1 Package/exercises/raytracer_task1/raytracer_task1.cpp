@@ -53,7 +53,7 @@ std::shared_ptr<rt::Scene> makeTask1Scene()
   // This principle will become apparent within the following weeks. You can assume that a rays coming from an 
   // arbitrary direction intersects with the unit sphere. 
   sphere1->transform().scale(rt::Vec3d(1  ,  1,1  )).rotate(0.0,rt::Vec3d(0,0,1)).translate(rt::Vec3d( -5,-2, 1));
-  sphere2->transform().scale(rt::Vec3d(1.5,1.5,1.5)).rotate(0.0,rt::Vec3d(0,0,1)).translate(rt::Vec3d(  0, 1, 1));
+  sphere2->transform().scale(rt::Vec3d(1.5,2.5,1.5)).rotate(0.0,rt::Vec3d(0,0,1)).translate(rt::Vec3d(  0, 1, 1));
   sphere3->transform().scale(rt::Vec3d(1  ,1  ,1  )).rotate(0.0,rt::Vec3d(0,0,1)).translate(rt::Vec3d( -2, 0, 2));
 
   // Every renderable object needs a material and must be added to the scene

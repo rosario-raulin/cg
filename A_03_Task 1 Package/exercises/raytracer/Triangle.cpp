@@ -24,7 +24,7 @@ Triangle::closestIntersectionModel(const Ray &ray, double maxLambda, RayIntersec
 
   (1) o1 + lambda*d1 = (1-v-w)*a1 + v*b1 + w*c1
   (2) o2 + lambda*d2 = (1-v-w)*a2 + v*b2 + w*c2
-  (3) o1 + lambda*d3 = (1-v-w)*a3 + v*b3 + w*c3,
+  (3) o3 + lambda*d3 = (1-v-w)*a3 + v*b3 + w*c3,
 
   where
     - o = (o1, o2, o3)T is the origin of the ray
@@ -57,14 +57,14 @@ Triangle::closestIntersectionModel(const Ray &ray, double maxLambda, RayIntersec
   Vec3d e1 = mVertices[1] - mVertices[0];
   Vec3d e2 = mVertices[2] - mVertices[0];
 
-  // first we need to determine 
+  // first we need to determine
   Vec3d p = cross(ray.direction(), e2);
   double D = dot(p, e1);
   if (fabs(D) < Math::safetyEps()) {
     // no intersection between the plane of the triange and the ray
     return false;
   }
-
+  
   // Use Dt do "gain some performance" (well, ...)
   double Dt = 1.0 / D;
   Vec3d t = ray.origin() - mVertices[0];
